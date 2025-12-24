@@ -9,7 +9,7 @@ function App() {
   // DHYAAN DEIN: Agar local chala rahe ho to localhost use karo.
   // Agar Render par daal rahe ho, to Render wala link use karo.
   // Abhi main localhost likh raha hu testing ke liye:
-  const API_URL = 'http://localhost:3001'; 
+  const API_URL = 'https://task-manager-3p1k.onrender.com'; 
   // const API_URL = 'https://tumhara-app.onrender.com'; // Deploy karte waqt ye line use karna
 
   useEffect(() => {
