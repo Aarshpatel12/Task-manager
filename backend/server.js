@@ -44,6 +44,9 @@ app.get('/get', (req, res) => {
 });
 
 // Server Start
-app.listen(3001, () => {
-    console.log("Server is Running on port 3001");
+// Render jo port dega use use karenge, nahi toh 3001
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () => {
+    console.log(`Server is Running on port ${PORT}`);
 });
