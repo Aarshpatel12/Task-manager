@@ -43,6 +43,13 @@ app.get('/get', (req, res) => {
     .catch(err => res.json(err));
 });
 
+// 3. Data Delete karne ke liye
+app.delete('/delete/:id', (req, res) => {
+    const { id } = req.params;
+    TaskModel.findByIdAndDelete({_id: id})
+    .then(result => res.json(result))
+    .catch(err => res.json(err));
+});
 // Server Start
 // Render jo port dega use use karenge, nahi toh 3001
 const PORT = process.env.PORT || 3001;

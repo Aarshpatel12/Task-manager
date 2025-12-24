@@ -3,22 +3,35 @@ import axios from 'axios';
 import './App.css';
 
 function App() {
-  const [task, setTask] = useState(""); // Input field ke liye state
-  const [todos, setTodos] = useState([]); // List display karne ke liye state
+  const [task, setTask] = useState("");
+  const [todos, setTodos] = useState([]);
 
-  // Jab page load ho, tab data fetch karo
+  // DHYAAN DEIN: Agar local chala rahe ho to localhost use karo.
+  // Agar Render par daal rahe ho, to Render wala link use karo.
+  // Abhi main localhost likh raha hu testing ke liye:
+  const API_URL = 'http://localhost:3001'; 
+  // const API_URL = 'https://tumhara-app.onrender.com'; // Deploy karte waqt ye line use karna
+
   useEffect(() => {
-    axios.get('https://task-manager-3p1k.onrender.com/get')
+    axios.get(`${API_URL}/get`)
       .then(result => setTodos(result.data))
       .catch(err => console.log(err));
   }, []);
 
-  // Naya task add karne ka function
   const handleAdd = () => {
-    axios.post('https://task-manager-3p1k.onrender.com/add', { task: task })
+    if(task.trim() === "") return; // Khali task add na ho
+    axios.post(`${API_URL}/add`, { task: task })
       .then(result => {
-        // Page refresh na ho isliye list update kar rahe hain
-        window.location.reload(); 
+        window.location.reload();
+      })
+      .catch(err => console.log(err));
+  }
+
+  // Delete ka Function
+  const handleDelete = (id) => {
+    axios.delete(`${API_URL}/delete/`+id)
+      .then(result => {
+        window.location.reload(); // Page refresh karke list update karega
       })
       .catch(err => console.log(err));
   }
@@ -27,8 +40,7 @@ function App() {
     <div className="App">
       <h1>My To-Do List</h1>
       
-      {/* Input Section */}
-      <div>
+      <div className="input_box">
         <input 
           type="text" 
           placeholder="Enter Task" 
@@ -37,11 +49,19 @@ function App() {
         <button onClick={handleAdd}>Add</button>
       </div>
 
-      {/* List Section */}
       <ul>
         {
-          todos.map((todo, index) => (
-            <li key={index}>{todo.todo}</li>
+          todos.map((todo) => (
+             // Har list item ke saath ab ek Delete button bhi hai
+             // MongoDB har item ko ek unique '_id' deta hai, hum wahi use kar rahe hain
+            <li key={todo._id}>
+                <span>{todo.todo}</span>
+                <button 
+                  style={{marginLeft: "10px", backgroundColor: "red", color: "white"}}
+                  onClick={() => handleDelete(todo._id)}>
+                  Delete
+                </button>
+            </li>
           ))
         }
       </ul>
