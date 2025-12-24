@@ -9,8 +9,13 @@ app.use(express.json());
 app.use(cors());
 
 // --- DATABASE CONNECTION (Apna purana link use karna) ---
-const dbURI = "mongodb+srv://admin:aarsh123@taskmanager.gyltg0u.mongodb.net/?appName=taskmanager";
-mongoose.connect(dbURI);
+// --- DATABASE CONNECTION ---
+// Maine '/mern-todo' add kiya hai aur logs wapas laye hain
+const dbURI = "mongodb+srv://admin:aarsh123@taskmanager.gyltg0u.mongodb.net/mern-todo?appName=taskmanager";
+
+mongoose.connect(dbURI)
+    .then(() => console.log("Connected to MongoDB Atlas!")) // Ye line zaroori hai pata lagane ke liye
+    .catch((err) => console.log("Error connecting to Atlas:", err));
 
 // --- SCHEMAS ---
 
