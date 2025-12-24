@@ -1,38 +1,146 @@
+/* 1. Global Reset & Body Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  /* Ek sundar Blue-Purple Gradient background */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* 2. Main Card Container (Login/Home sab iske andar hai) */
 .App {
+  background: white;
+  width: 100%;
+  max-width: 450px; /* Mobile aur Desktop dono pe sahi dikhega */
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* Thoda utha hua effect */
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1, h2, h3 {
+  color: #333;
+  margin-bottom: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* 3. Input Fields (Modern Look) */
+input {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: 0.3s;
+  outline: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+}
+
+/* 4. Buttons (Sabhi buttons ke liye) */
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: transform 0.2s, opacity 0.2s;
+  margin-top: 10px;
+}
+
+button:active {
+  transform: scale(0.96); /* Click karne par thoda dabega */
+}
+
+/* --- Specific Button Colors --- */
+
+/* Login/Register/Add Buttons (Blue) */
+form button, .add-btn {
+  background-color: #667eea;
   color: white;
+  width: 100%; /* Full width */
 }
 
-.App-link {
-  color: #61dafb;
+/* Done Button (Green - Chhota wala) */
+.done-btn, button:contains("✅") { 
+  /* Note: CSS me text select nahi hota, isliye humne niche class di hai */
+  background-color: #2ed573;
+  color: white;
+  padding: 8px 12px;
+  margin-left: 10px;
+  width: auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Delete Button (Red - Chhota wala) */
+.delete-btn, button:contains("🗑️") {
+  background-color: #ff4757;
+  color: white;
+  padding: 8px 12px;
+  margin-left: 10px;
+  width: auto;
+}
+
+/* 5. Lists (Tasks) */
+ul {
+  list-style: none; /* Bullets hataye */
+  padding: 0;
+  margin-top: 20px;
+  text-align: left;
+}
+
+li {
+  background: #f1f2f6;
+  border-bottom: 2px solid #dfe4ea;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between; /* Text left, button right */
+  align-items: center;
+  font-size: 18px;
+  color: #2f3542;
+}
+
+/* History items thode dull dikhe */
+li s {
+  color: #a4b0be;
+}
+
+/* 6. Links (Login page par 'Sign up' link) */
+a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* 7. Input Box Container (Home page par Add + Button ek line me) */
+.input_box {
+  display: flex;
+  gap: 10px; /* Input aur button ke beech gap */
+}
+
+.input_box input {
+  margin: 0; /* Extra margin hataya taaki align ho */
+}
+
+.input_box .add-btn {
+  width: auto; /* Button utna hi bada ho jitna text hai */
+  margin: 0;
 }
