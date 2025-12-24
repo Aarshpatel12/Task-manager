@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(cors());
 
 // --- DATABASE CONNECTION (Apna purana link use karna) ---
-const dbURI = "mongodb+srv://admin:fByKTQcGKXT8KT7O@taskmanager.gyltg0u.mongodb.net/?appName=taskmanager";
+const dbURI = "mongodb+srv://admin:aarsh123@taskmanager.gyltg0u.mongodb.net/?appName=taskmanager";
 mongoose.connect(dbURI);
 
 // --- SCHEMAS ---
