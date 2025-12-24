@@ -21,8 +21,14 @@ mongoose.connect(dbURI)
 
 // Schema Definition
 const TaskSchema = new mongoose.Schema({
-    todo: String
+    todo: String,
+    done: {
+        type: Boolean,
+        default: false
+    } 
 });
+// done: false matlab kaam abhi baki hai.
+// done: true matlab kaam History me jayega.
 
 const TaskModel = mongoose.model("tasks", TaskSchema);
 
@@ -47,6 +53,15 @@ app.get('/get', (req, res) => {
 app.delete('/delete/:id', (req, res) => {
     const { id } = req.params;
     TaskModel.findByIdAndDelete({_id: id})
+    .then(result => res.json(result))
+    .catch(err => res.json(err));
+});
+
+// Task ko History me bhejne ke liye (Status update)
+app.put('/update/:id', (req, res) => {
+    const { id } = req.params;
+    // Hum sirf 'done' field ko true kar rahe hain
+    TaskModel.findByIdAndUpdate({_id: id}, {done: true})
     .then(result => res.json(result))
     .catch(err => res.json(err));
 });
